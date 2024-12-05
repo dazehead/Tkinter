@@ -1,14 +1,15 @@
 from tkinter import *
 from tkinter import ttk
-
-def calculate(*args):
-    """does a calculation"""
-    pass
+from PIL import Image, ImageTk
 
 root = Tk()
-mainframe = ttk.Frame(root)
-mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-button = ttk.Button(mainframe, text="Calculate", command=calculate)
-button.grid(column=1, row=1, sticky=W)
+canvas = Canvas(root, width=500, height=400)
+
+# myimg = PhotoImage(file='images/pecos_bill.png')
+myimg = Image.open('images/pecos_bill.png')
+myimg = myimg.resize((500,400))
+myimg = ImageTk.PhotoImage(myimg)
+canvas.create_image(10, 10, image=myimg, anchor='nw')
+canvas.grid()
 
 root.mainloop()
